@@ -1,18 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const {
-    createRecipe,
-    getAllRecipes,
-    getRecipeById,
-    updateRecipe,
-    deleteRecipe
+  createRecipe,
+  getAllRecipes,
+  getRecipeById,
+  updateRecipe,
+  deleteRecipe,
 } = require('../controllers/recipeController');
 
-// CRUD routes
-router.post('/', createRecipe);
-router.get('/', getAllRecipes);
-router.get('/:id', getRecipeById);
-router.put('/:id', updateRecipe);
-router.delete('/:id', deleteRecipe);
+router.route('/')
+  .post(createRecipe)
+  .get(getAllRecipes);
+
+router.route('/:id')
+  .get(getRecipeById)
+  .put(updateRecipe)
+  .delete(deleteRecipe);
 
 module.exports = router;
